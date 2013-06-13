@@ -1,0 +1,6 @@
+INDEX VERSION 1.126+/usr/src/minecraft-dev/visual-sound/mcp/eclipse/.metadata/.plugins/org.eclipse.jdt.core
+1829380808.index
+3306632036.index
+1582114152.index
+386349844.index
+1779476745.index
