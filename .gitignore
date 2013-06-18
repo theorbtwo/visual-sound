@@ -1,0 +1,17 @@
+mcp/eclipse/.metadata/.plugins/org.eclipse.cdt.core/.log
+mcp/eclipse/.metadata/.plugins/org.eclipse.core.resources/.root/.indexes
+mcp/eclipse/.metadata/
+mcp/eclipse/Minecraft/bin
+mcp/jars/ForgeModLoader-client-0.log mcp/jars/ForgeModLoader-client-0.log.1 mcp/jars/ForgeModLoader-client-0.log.1.lck mcp/jars/ForgeModLoader-client-0.log.lck mcp/jars/ForgeModLoader-client-1.log mcp/jars/ForgeModLoader-client-1.log.1 mcp/jars/ForgeModLoader-client-2.log mcp/jars/ForgeModLoader-client-2.log.1
+mcp/jars/ForgeModLoader-client-*.log*
+mcp/jars/crash-reports/
+mcp/jars/*.log
+mcp/jars/config/
+mcp/jars/lib/
+mcp/jars/output-{client,server}*.log*
+mcp/jars/output-*.log*
+mcp/jars/options.txt
+mcp/jars/resources/
+mcp/jars/saves
+mcp/jars/stats
+mcp/eclipse/.metadata/
