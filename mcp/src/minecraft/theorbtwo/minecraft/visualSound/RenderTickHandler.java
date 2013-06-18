@@ -10,8 +10,6 @@ import org.lwjgl.opengl.GL11;
 
 import com.google.common.math.DoubleMath;
 
-import net.machinemuse.general.geometry.Colour;
-import net.machinemuse.utils.render.MuseRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.gui.ScaledResolution;
@@ -68,7 +66,7 @@ public class RenderTickHandler implements ITickHandler {
         		double distance = player.getDistance(r.x, r.y, r.z);
         		// for the purposes of screen_x and screen_y, (0, 0) is the center of the screen, with +x being right, and +y being down.
         		double screen_x;
-        		double screen_y = mc_height/2;
+        		double screen_y;
 
         		if (distance == 0) {
         			screen_x = mc_width/2;
@@ -125,7 +123,7 @@ public class RenderTickHandler implements ITickHandler {
         			//screen_x *= mc_width;           //    0 ~ width
         			screen_x = ((rrh + 180)/360)*mc_width;
 
-        			
+
         			//screen_x = 0.5 * mc_height;
         		}
 
