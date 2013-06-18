@@ -23,7 +23,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 /**
- * @author theorb
+ * @author theorbtwo
  *
  * Based on https://github.com/MachineMuse/MachineMusePowersuits/blob/master/src/minecraft/net/machinemuse/powersuits/tick/RenderTickHandler.java
  */
@@ -66,7 +66,7 @@ public class RenderTickHandler implements ITickHandler {
         		double distance = player.getDistance(r.x, r.y, r.z);
         		// for the purposes of screen_x and screen_y, (0, 0) is the center of the screen, with +x being right, and +y being down.
         		double screen_x;
-        		double screen_y;
+        		double screen_y = mc_height/2;
 
         		if (distance == 0) {
         			screen_x = mc_width/2;
@@ -81,7 +81,7 @@ public class RenderTickHandler implements ITickHandler {
 
         			// player positioning
         			double px = player.posX;
-        			double py = player.posY;
+        			double py = player.posY + player.getEyeHeight();
         			double pz = player.posZ;
         			// player's horizontal angle -- matches convention on f3 screen.
         			double ph = (double)player.rotationYawHead % (double)360;
