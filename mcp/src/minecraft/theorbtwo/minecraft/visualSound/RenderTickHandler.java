@@ -72,13 +72,6 @@ public class RenderTickHandler implements ITickHandler {
         			screen_x = mc_width/2;
         			screen_y = mc_height/2;
         		} else {
-        			// player.rotationYawHead: what direction n/w/s/e we're looking -- same as debug screen f.
-        			//    0 = south
-        			//   90 = west
-        			//  180 = north
-        			// -180 = north
-        			//  -90 = east
-
         			// player positioning
         			double px = player.posX;
         			double py = player.posY + player.getEyeHeight();
@@ -114,14 +107,44 @@ public class RenderTickHandler implements ITickHandler {
         			if (rrh > 180) {
         				rrh -= 360;
         			}
-        			//FMLLog.info("ph - rh: %f", ph - rh);
 
-        			FMLLog.info("rrh = %f deg", rrh);
+        			//FMLLog.info("rrh = %f deg", rrh);
         			//screen_x = rrh;                 // -180 ~ 180
         			//screen_x += 180;                //    0 ~ 360
         			//screen_x /= 360;                //    0 ~ 1
         			//screen_x *= mc_width;           //    0 ~ width
         			screen_x = ((rrh + 180)/360)*mc_width;
+
+        			// Right, now do the annoying bits over again, for the vertical angle.
+
+        			//  90 = down at feet
+        			//   0 = straight ahead
+        			// -90 = up at sky
+        			double pv = player.rotationPitch;
+
+        			// rv -- the angle of the vector from the player to the event, in world degrees.
+        			double rv = (180/Math.PI) * Math.atan2(ry, rx);
+        			//FMLLog.info("rv = %f", rv);
+        			rv = rv % 360;
+        			if (rv > 180) {
+        				rv -= 180;
+        			}
+
+        			// rv, relative to the direction the player is looking.
+        			double rrv = rv - pv;
+        			if (rrv > 180) {
+        				rrv -= 360;
+        			}
+
+        			screen_y = rrv;                 //  -90 ~ 90
+        			//FMLLog.info("screen_y = %f", screen_y);
+        			screen_y += 90;                 //    0 ~ 180
+        			//FMLLog.info("screen_y = %f", screen_y);
+        			screen_y /= 180;                //    0 ~ 1
+        			//FMLLog.info("screen_y = %f", screen_y);
+        			screen_y *= mc_height;          //    0 ~ width
+        			//FMLLog.info("screen_y = %f", screen_y);
+        			//screen_y = ((rrv + 180)/360)*mc_height;
 
 
         			//screen_x = 0.5 * mc_height;
@@ -170,7 +193,7 @@ public class RenderTickHandler implements ITickHandler {
 	}
 
     public static void drawString(String s, int x, int y) {
-    	FMLLog.info("drawString: %s, %d, %d", s, x, y);
+    	//FMLLog.info("drawString: %s, %d, %d", s, x, y);
         //drawString(s, x, y, Colour.WHITE);
         Minecraft mc = Minecraft.getMinecraft();
         GL11.glEnable(GL11.GL_TEXTURE_2D);
