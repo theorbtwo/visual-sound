@@ -24,8 +24,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * @author theorbtwo
- *
- * Based on https://github.com/MachineMuse/MachineMusePowersuits/blob/master/src/minecraft/net/machinemuse/powersuits/tick/RenderTickHandler.java
  */
 @SideOnly(Side.CLIENT)
 public class RenderTickHandler implements ITickHandler {
@@ -35,7 +33,10 @@ public class RenderTickHandler implements ITickHandler {
 	 */
 	@Override
 	public void tickEnd(EnumSet<TickType> type, Object... tickData) {
+
         Minecraft mc = Minecraft.getMinecraft();
+        mc.mcProfiler.startSection("VisualSound");
+
         EntityClientPlayerMP player = mc.thePlayer;
         if (player == null) {
         	// We aren't in the actual game yet.
@@ -153,6 +154,8 @@ public class RenderTickHandler implements ITickHandler {
         		drawString(r.text, (int)screen_x, (int)screen_y);
         	}
         }
+
+        mc.mcProfiler.endSection();
 	}
 
 	public static CharSequence array_to_string(Object[] array) {
