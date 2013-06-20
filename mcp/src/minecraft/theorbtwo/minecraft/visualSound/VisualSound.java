@@ -3,34 +3,17 @@
  */
 package theorbtwo.minecraft.visualSound;
 
-import java.nio.FloatBuffer;
-import java.nio.IntBuffer;
 import java.util.ArrayList;
 
-import org.lwjgl.BufferUtils;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.util.glu.GLU;
-
-import com.google.common.eventbus.EventBus;
-
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityClientPlayerMP;
-import net.minecraft.client.gui.ChatLine;
-import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.sound.PlaySoundEvent;
+import net.minecraftforge.client.event.sound.PlaySoundSourceEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ForgeSubscribe;
-import net.minecraftforge.event.entity.PlaySoundAtEntityEvent;
-import cpw.mods.fml.common.LoadController;
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.Mod.PreInit;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.TickRegistry;
@@ -62,7 +45,11 @@ public class VisualSound {
     	Minecraft mc = net.minecraft.client.Minecraft.getMinecraft();
     	mc.mcProfiler.startSection("VisualSound");
 
-    	soundRecords.add(new SoundRecord(event.name, 20, event.x, event.y, event.z));
+    	// 20: we currently don't have any idea of how long a sound is.
+    	// Surprisingly, this isn't because I haven't figured out how to get this
+    	// information from minecraft yet; it's because minecraft doesn't know
+    	// either.
+    	soundRecords.add(new SoundRecord(event.name, 20, mc.thePlayer.dimension, event.x, event.y, event.z, event.volume));
 
 		mc.mcProfiler.endSection();
     }
